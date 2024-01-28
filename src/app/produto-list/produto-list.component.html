@@ -1,4 +1,4 @@
 <p *ngFor="let produto of produtos">
+  {{ produto.nome }}: {{ produto.precoUnitario | currency: 'BRL' }}
 
-  {{ produto.nome }} : {{ produto.precoUnitario | currency: 'BRL' }}
 </p>

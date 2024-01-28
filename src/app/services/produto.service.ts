@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { Produto } from '../common/produto';
 
 @Injectable({
@@ -12,15 +13,16 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  getProdutoList(): Observable<Produto[]>{
+  getProdutoList(): Observable<Produto[]> {
     return this.http.get<GetResponse>(this.url).pipe(
+      tap(response => console.log(response)),
       map(response => response._embedded.produtos)
     );
   }
 
-}
 
-interface GetResponse{
+}
+export interface GetResponse {
   _embedded: {
     produtos: Produto[];
   }
