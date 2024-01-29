@@ -13,7 +13,10 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  getProdutoList(): Observable<Produto[]> {
+  getProdutoList(categoriaId: number): Observable<Produto[]> {
+
+    //@TODO: precisa construir uma url baseada no id da categoria...
+    
     return this.http.get<GetResponse>(this.url).pipe(
       tap(response => console.log(response)),
       map(response => response._embedded.produtos)
