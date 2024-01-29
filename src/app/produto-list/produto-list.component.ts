@@ -4,7 +4,8 @@ import { Produto } from '../common/produto';
 
 @Component({
   selector: 'app-produto-list',
-  templateUrl: './produto-list-table.component.html',
+  templateUrl: './produto-list-grid.component.html',
+  //templateUrl: './produto-list-table.component.html',
   //templateUrl: './produto-list.component.html',
   styleUrls: ['./produto-list.component.css']
 })
