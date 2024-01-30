@@ -10,7 +10,7 @@ import { CategoriaProdutoMenuComponent } from './components/categoria-produto-me
 
 const routes: Routes = [
 
-  {path: 'categoria/:id', component: ProdutoListComponent},
+  {path: 'categoria/:id/:nome', component: ProdutoListComponent},
   {path: 'categoria', component: ProdutoListComponent},
   {path: 'produtos', component: ProdutoListComponent},
   {path: '', redirectTo: '/produtos', pathMatch: 'full'},
