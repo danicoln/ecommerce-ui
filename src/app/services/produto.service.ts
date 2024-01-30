@@ -22,7 +22,7 @@ export class ProdutoService {
     const searchUrl = `${this.url}/search/findByCategoriaId?id=${categoriaId}`;
 
     return this.http.get<GetResponseProdutos>(searchUrl).pipe(
-      tap(response => console.log(response)),
+      //tap(response => console.log(response)),
       map(response => response._embedded.produtos)
     );
   }
@@ -30,7 +30,8 @@ export class ProdutoService {
   getCategoriaDeProdutos(): Observable<CategoriaProduto[]> {
 
     return this.http.get<GetResponseCategoriaDeProduto>(this.categoriaUrl).pipe(
-      map(response => response._embedded.categoriasDeProduto)
+      tap(response => console.log(response)),
+      map(response => response._embedded.categoriaProduto)
     );
   }
 
@@ -44,6 +45,6 @@ interface GetResponseProdutos {
 
 interface GetResponseCategoriaDeProduto {
   _embedded: {
-    categoriasDeProduto: CategoriaProduto[];
+    categoriaProduto: CategoriaProduto[];
   }
 }

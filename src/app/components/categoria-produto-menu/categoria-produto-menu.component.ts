@@ -9,11 +9,11 @@ import { ProdutoService } from 'src/app/services/produto.service';
 })
 export class CategoriaProdutoMenuComponent implements OnInit {
 
-  categoriaProduto: CategoriaProduto[] = [];
+  categorias: CategoriaProduto[];
 
   constructor(private produtoService: ProdutoService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     this.listaDeCategoriaDeProdutos();
   }
@@ -21,8 +21,8 @@ export class CategoriaProdutoMenuComponent implements OnInit {
   listaDeCategoriaDeProdutos(){
     this.produtoService.getCategoriaDeProdutos().subscribe(
       dados => {
-        console.log('Categoria de Produto=' + JSON.stringify(dados));
-        this.categoriaProduto = dados;
+        console.log('Categoria de Produto=' , JSON.stringify(dados));
+        this.categorias = dados;
       }
     );
   }
