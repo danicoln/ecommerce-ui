@@ -1,1 +1,11 @@
-<p>pesquisar works!</p>
+<div class="form-header">
+
+  <input #minhaEntrada type="text"
+    placeholder="Pesquise por produtos ..."
+    class="au-input au-input-xl"
+    (keyup.enter)="aoPesquisar(minhaEntrada.value)" />
+
+  <button (click)="aoPesquisar(minhaEntrada.value)" class="au-btn-submit">
+    Search
+  </button>
+</div>
