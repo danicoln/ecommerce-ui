@@ -10,6 +10,7 @@ import { CategoriaProduto } from '../common/categoria-produto';
 })
 export class ProdutoService {
 
+
   private url = 'http://localhost:8080/api/produtos';
 
   private categoriaUrl = 'http://localhost:8080/api/categoria-produto';
@@ -21,6 +22,18 @@ export class ProdutoService {
     //precisa construir uma URL baseada no id da categoria
     const searchUrl = `${this.url}/search/findByCategoriaId?id=${categoriaId}`;
 
+    return this.getProdutos(searchUrl);
+  }
+
+  pesquisarProdutos(keyword: string): Observable<Produto[]> {
+    //precisa construir uma URL baseada na palavra-chave
+    const searchUrl = `${this.url}/search/findByNomeContaining?nome=${keyword}`;
+
+    return this.getProdutos(searchUrl);
+
+  }
+
+  private getProdutos(searchUrl: string): Observable<Produto[]> {
     return this.http.get<GetResponseProdutos>(searchUrl).pipe(
       //tap(response => console.log(response)),
       map(response => response._embedded.produtos)
