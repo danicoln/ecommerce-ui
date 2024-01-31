@@ -12,7 +12,9 @@ export class ProdutoListComponent implements OnInit {
 
   produtos: Produto[];
   categoriaAtualId: number = 1;
-  categoriaAtual: string = "";
+  categoriaAtual: string = ""; //Referente ao FAQ
+
+  modoPesquisar: boolean = false;
 
   constructor(
     private produtoService: ProdutoService,
@@ -26,32 +28,54 @@ export class ProdutoListComponent implements OnInit {
   }
 
   listarProdutos() {
+    this.modoPesquisar = this.route.snapshot.paramMap.has('keyword');
 
-    //verificar se o id é valido
-    const existeCategoriaId: boolean = this.route.snapshot.paramMap.has('id');
-    //obs: no this.route, Usamos o ActivateRoute, em seguida o estado da rota neste exato momento, paramMap mapeia os parâmetros da rota e com o "has", lemos o parâmetro
-
-    if (existeCategoriaId) {
-      //pega o id string e conver em numero, usando "+"
-      this.categoriaAtualId = +this.route.snapshot.paramMap.get('id')!;
-
-      this.categoriaAtual = this.route.snapshot.paramMap.get('nome')!;
+    if(this.modoPesquisar){
+      this.handlePesquisarProdutos();
     }
     else {
-      this.categoriaAtualId = 1;
-      this.categoriaAtual = 'Books';
+      this.handleProdutoList();
     }
+  }
+  handlePesquisarProdutos() {
+    const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
 
-
-    this.produtoService.getProdutoList(this.categoriaAtualId).subscribe(
-      data => {
-        if (data) {
-          this.produtos = data;
-        } else {
-
-          console.error('Resposta do servidor vazia', data);
-        }
+    //pesquisar produtos usando a palavra-chave (keyword)
+    this.produtoService.pesquisarProdutos(keyword).subscribe(
+      dados => {
+        this.produtos = dados;
       }
     )
   }
+
+    handleProdutoList(){
+
+      //verificar se o id é valido
+      const existeCategoriaId: boolean = this.route.snapshot.paramMap.has('id');
+      //obs: no this.route, Usamos o ActivateRoute, em seguida o estado da rota neste exato momento, paramMap mapeia os parâmetros da rota e com o "has", lemos o parâmetro
+
+      if (existeCategoriaId) {
+        //pega o id string e conver em numero, usando "+"
+        this.categoriaAtualId = +this.route.snapshot.paramMap.get('id')!;
+
+        this.categoriaAtual = this.route.snapshot.paramMap.get('nome')!;
+      }
+      else {
+        this.categoriaAtualId = 1;
+        this.categoriaAtual = 'Books';
+      }
+
+
+      this.produtoService.getProdutoList(this.categoriaAtualId).subscribe(
+        data => {
+          if (data) {
+            this.produtos = data;
+          } else {
+
+            console.error('Resposta do servidor vazia', data);
+          }
+        }
+      )
+    }
+
 }
