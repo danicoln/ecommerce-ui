@@ -1,6 +1,6 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
-    
+
     <h4>Categoria: {{ categoriaAtual }}</h4>
     <hr>
 
@@ -17,6 +17,14 @@
             <a href="#" class="primary-btn">Adicionar ao carrinho</a>
           </div>
 
+        </div>
+
+        <!-- se os produtos estiverem vazios e exibir uma mensagem-->
+
+        <div *ngIf="produtos?.length == 0"
+          class="alert alert-warning col-md-12"
+          role="alert"
+          >Protudo não encontrado.
         </div>
 
       </div>
