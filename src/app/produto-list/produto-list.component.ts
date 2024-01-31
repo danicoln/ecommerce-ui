@@ -12,11 +12,12 @@ export class ProdutoListComponent implements OnInit {
 
   produtos: Produto[];
   categoriaAtualId: number = 1;
+  categoriaAtual: string = "";
 
   constructor(
     private produtoService: ProdutoService,
     private route: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
@@ -30,20 +31,23 @@ export class ProdutoListComponent implements OnInit {
     const existeCategoriaId: boolean = this.route.snapshot.paramMap.has('id');
     //obs: no this.route, Usamos o ActivateRoute, em seguida o estado da rota neste exato momento, paramMap mapeia os parâmetros da rota e com o "has", lemos o parâmetro
 
-    if(existeCategoriaId){
+    if (existeCategoriaId) {
       //pega o id string e conver em numero, usando "+"
       this.categoriaAtualId = +this.route.snapshot.paramMap.get('id')!;
+
+      this.categoriaAtual = this.route.snapshot.paramMap.get('nome')!;
     }
-    else{
+    else {
       this.categoriaAtualId = 1;
+      this.categoriaAtual = 'Books';
     }
 
 
     this.produtoService.getProdutoList(this.categoriaAtualId).subscribe(
       data => {
-        if(data){
+        if (data) {
           this.produtos = data;
-        } else{
+        } else {
 
           console.error('Resposta do servidor vazia', data);
         }
