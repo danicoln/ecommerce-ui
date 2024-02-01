@@ -1,0 +1,16 @@
+<div class="detail-section">
+  <div class="container-fluid">
+
+    <img src="{{ produto.imagemUrl }}" class="detail-img">
+
+    <h3>{{ produto.nome }}</h3>
+    <div class="preco">{{ produto.precoUnitario | currency: 'BRL' }}</div>
+    <a href="#" class="primary-btn"> Adicionar ao carrinho</a>
+
+    <hr>
+    <h4>Descrição</h4>
+    <p>{{ produto.descricao }}</p>
+
+    <a routerLink="/produtos" class="mt-5">Voltar para a lista de produtos</a>
+  </div>
+</div>

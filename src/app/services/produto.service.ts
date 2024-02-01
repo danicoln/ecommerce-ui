@@ -48,6 +48,14 @@ export class ProdutoService {
     );
   }
 
+  getProduto(produtoId: number) : Observable<Produto>{
+
+    // precisamos construir uma url baseada no id do produto.
+    const produtoUrl = `${this.url}/${produtoId}`;
+
+    return this.http.get<Produto>(produtoUrl);
+  }
+
 
 }
 interface GetResponseProdutos {
