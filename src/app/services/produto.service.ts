@@ -48,6 +48,10 @@ export class ProdutoService {
     );
   }
 
+  getProduto(produtoId: number) : Observable<Produto>{
+    throw new Error('Method not implemented.');
+  }
+
 
 }
 interface GetResponseProdutos {
