@@ -10,6 +10,8 @@ import { CategoriaProdutoMenuComponent } from './components/categoria-produto-me
 import { PesquisarComponent } from './components/pesquisar/pesquisar.component';
 import { ProdutoDetailsComponent } from './components/produto-details/produto-details.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 const routes: Routes = [
 
   {path: 'produtos/:id', component: ProdutoDetailsComponent},
@@ -30,6 +32,7 @@ const routes: Routes = [
     ProdutoDetailsComponent,
   ],
   imports: [
+    NgbModule,
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule
