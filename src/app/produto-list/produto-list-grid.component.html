@@ -11,8 +11,15 @@
         <div *ngFor="let produto of produtos" class="col-md-3">
 
           <div class="caixa-produto">
-            <img src="{{produto.imagemUrl}}" class="img-responsive">
+
+            <a routerLink="/produtos/{{produto.id}}">
+              <img src="{{produto.imagemUrl}}" class="img-responsive">
+            </a>
+
+            <a routerLink="/produtos/{{produto.id}}">
             <h1>{{ produto.nome }}</h1>
+          </a>
+
             <div class="preco">{{ produto.precoUnitario | currency: 'BRL' }}</div>
             <a href="#" class="primary-btn">Adicionar ao carrinho</a>
           </div>
