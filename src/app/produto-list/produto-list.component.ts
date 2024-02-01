@@ -19,8 +19,10 @@ export class ProdutoListComponent implements OnInit {
 
   //novas propriedades para paginação
   pageNumber: number = 1;
-  pageSize: number = 2;
+  pageSize: number = 5;
   totalElements: number = 0;
+
+  palavraChaveAnterior: string = "";
 
   constructor(
     private produtoService: ProdutoService,
@@ -46,12 +48,22 @@ export class ProdutoListComponent implements OnInit {
   handlePesquisarProdutos() {
     const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
 
+    //se tiver uma palavrachave diferente que a anterior, setamos pageNumber=1
+    if(this.palavraChaveAnterior != keyword){
+      this.pageNumber = 1;
+    }
+
+    this.palavraChaveAnterior = keyword;
+
+    //debug
+    console.log(`palavra-chave=${keyword}, PageNumber=${this.pageNumber}`);
+
     //pesquisar produtos usando a palavra-chave (keyword)
-    this.produtoService.pesquisarProdutos(keyword).subscribe(
-      dados => {
-        this.produtos = dados;
-      }
-    )
+    this.produtoService.pesquisarProdutoPaginate(
+      this.pageNumber - 1,
+      this.pageSize,
+      keyword).subscribe(
+        this.processResult());
   }
 
   handleProdutoList() {
@@ -87,14 +99,7 @@ export class ProdutoListComponent implements OnInit {
       this.pageNumber - 1,
       this.pageSize,
       this.categoriaIdAtual)
-      .subscribe(
-        data => {
-          this.produtos = data._embedded.produtos;
-          this.pageNumber = data.page.number + 1;
-          this.pageSize = data.page.size;
-          this.totalElements = data.page.totalElements;
-        }
-      );
+      .subscribe(this.processResult());
   }
 
   updatePageSize(pageSize: string) {
@@ -102,6 +107,15 @@ export class ProdutoListComponent implements OnInit {
     this.pageNumber = 1;
     this.listarProdutos();
 
+  }
+
+  processResult(){
+    return (data: any) => {
+      this.produtos = data._embedded.produtos;
+      this.pageNumber = data.page.number + 1;
+      this.pageSize = data.page.size;
+      this.totalElements = data.page.totalElements;
+    };
   }
 
 }
