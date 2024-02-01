@@ -8,9 +8,11 @@ import { ProdutoListComponent } from './produto-list/produto-list.component';
 import { ProdutoService } from './services/produto.service';
 import { CategoriaProdutoMenuComponent } from './components/categoria-produto-menu/categoria-produto-menu.component';
 import { PesquisarComponent } from './components/pesquisar/pesquisar.component';
+import { ProdutoDetailsComponent } from './components/produto-details/produto-details.component';
 
 const routes: Routes = [
 
+  {path: 'produtos/:id', component: ProdutoDetailsComponent},
   {path: 'pesquisar/:keyword', component: ProdutoListComponent},
   {path: 'categoria/:id/:nome', component: ProdutoListComponent},
   {path: 'categoria', component: ProdutoListComponent},
@@ -25,6 +27,7 @@ const routes: Routes = [
     ProdutoListComponent,
     CategoriaProdutoMenuComponent,
     PesquisarComponent,
+    ProdutoDetailsComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
