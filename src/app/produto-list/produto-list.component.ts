@@ -19,7 +19,7 @@ export class ProdutoListComponent implements OnInit {
 
   //novas propriedades para paginação
   pageNumber: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 2;
   totalElements: number = 0;
 
   constructor(
@@ -36,7 +36,7 @@ export class ProdutoListComponent implements OnInit {
   listarProdutos() {
     this.modoPesquisar = this.route.snapshot.paramMap.has('keyword');
 
-    if(this.modoPesquisar){
+    if (this.modoPesquisar) {
       this.handlePesquisarProdutos();
     }
     else {
@@ -54,47 +54,54 @@ export class ProdutoListComponent implements OnInit {
     )
   }
 
-    handleProdutoList(){
+  handleProdutoList() {
 
-      //verificar se o id é valido
-      const existeCategoriaId: boolean = this.route.snapshot.paramMap.has('id');
-      //obs: no this.route, Usamos o ActivateRoute, em seguida o estado da rota neste exato momento, paramMap mapeia os parâmetros da rota e com o "has", lemos o parâmetro
+    //verificar se o id é valido
+    const existeCategoriaId: boolean = this.route.snapshot.paramMap.has('id');
+    //obs: no this.route, Usamos o ActivateRoute, em seguida o estado da rota neste exato momento, paramMap mapeia os parâmetros da rota e com o "has", lemos o parâmetro
 
-      if (existeCategoriaId) {
-        //pega o id string e conver em numero, usando "+"
-        this.categoriaIdAtual = +this.route.snapshot.paramMap.get('id')!;
+    if (existeCategoriaId) {
+      //pega o id string e conver em numero, usando "+"
+      this.categoriaIdAtual = +this.route.snapshot.paramMap.get('id')!;
 
-        this.categoriaAtual = this.route.snapshot.paramMap.get('nome')!;
-      }
-      else {
-        this.categoriaIdAtual = 1;
-        this.categoriaAtual = 'Books';
-      }
-
-      //verificar se tem uma categoria diferente
-
-      if(this.categoriaIdAnterior != this.categoriaIdAtual){
-        this.pageNumber = 1;
-      }
-
-      this.categoriaIdAnterior = this.categoriaIdAtual;
-
-      console.log(`categoriaIdAtual=${this.categoriaIdAtual}, pageNumber=${this.pageNumber}`);
-
-      // agora obtemos o produto dado o id da categoria
-
-      this.produtoService.getProdutoListPaginate(
-          this.pageNumber - 1,
-          this.pageSize,
-          this.categoriaIdAtual)
-          .subscribe(
-            data => {
-              this.produtos = data._embedded.produtos;
-              this.pageNumber = data.page.number + 1;
-              this.pageSize = data.page.size;
-              this.totalElements = data.page.totalElements;
-            }
-          );
+      this.categoriaAtual = this.route.snapshot.paramMap.get('nome')!;
     }
+    else {
+      this.categoriaIdAtual = 1;
+      this.categoriaAtual = 'Books';
+    }
+
+    //verificar se tem uma categoria diferente
+
+    if (this.categoriaIdAnterior != this.categoriaIdAtual) {
+      this.pageNumber = 1;
+    }
+
+    this.categoriaIdAnterior = this.categoriaIdAtual;
+
+    console.log(`categoriaIdAtual=${this.categoriaIdAtual}, pageNumber=${this.pageNumber}`);
+
+    // agora obtemos o produto dado o id da categoria
+
+    this.produtoService.getProdutoListPaginate(
+      this.pageNumber - 1,
+      this.pageSize,
+      this.categoriaIdAtual)
+      .subscribe(
+        data => {
+          this.produtos = data._embedded.produtos;
+          this.pageNumber = data.page.number + 1;
+          this.pageSize = data.page.size;
+          this.totalElements = data.page.totalElements;
+        }
+      );
+  }
+
+  updatePageSize(pageSize: string) {
+    this.pageSize = +pageSize;
+    this.pageNumber = 1;
+    this.listarProdutos();
+
+  }
 
 }
