@@ -49,7 +49,11 @@ export class ProdutoService {
   }
 
   getProduto(produtoId: number) : Observable<Produto>{
-    throw new Error('Method not implemented.');
+
+    // precisamos construir uma url baseada no id do produto.
+    const produtoUrl = `${this.url}/${produtoId}`;
+
+    return this.http.get<Produto>(produtoUrl);
   }
 
 
