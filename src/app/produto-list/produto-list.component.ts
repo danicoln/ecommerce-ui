@@ -49,7 +49,7 @@ export class ProdutoListComponent implements OnInit {
     const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
 
     //se tiver uma palavrachave diferente que a anterior, setamos pageNumber=1
-    if(this.palavraChaveAnterior != keyword){
+    if (this.palavraChaveAnterior != keyword) {
       this.pageNumber = 1;
     }
 
@@ -109,13 +109,17 @@ export class ProdutoListComponent implements OnInit {
 
   }
 
-  processResult(){
+  processResult() {
     return (data: any) => {
       this.produtos = data._embedded.produtos;
       this.pageNumber = data.page.number + 1;
       this.pageSize = data.page.size;
       this.totalElements = data.page.totalElements;
     };
+  }
+
+  adicionarAoCarrinho(produto: Produto) {
+    console.log(`Adicionando ao carrinho: ${produto.nome}, ${produto.precoUnitario}`);
   }
 
 }
