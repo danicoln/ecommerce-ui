@@ -41,6 +41,29 @@ export class CarrinhoService {
   }
 
   calcularCarrinhoTotal() {
-    throw new Error('Method not implemented.');
+    let valorPrecoTotal: number = 0;
+    let valorQuantidadeTotal: number = 0;
+
+    for(let itemCarrinhoAtual of this.itensCarrinhos){
+      valorPrecoTotal += itemCarrinhoAtual.quantidade * itemCarrinhoAtual.precoUnitario;
+      valorQuantidadeTotal += itemCarrinhoAtual.quantidade;
+    }
+    // publicar os novos valores... todos subscribes precisam recebem os novos dados
+    this.precoTotal.next(valorPrecoTotal);
+    this.quantidadeTotal.next(valorQuantidadeTotal);
+
+    // log para depuração
+    this.logCartData(valorPrecoTotal, valorQuantidadeTotal);
+  }
+
+  logCartData(precoTotal: number, qtdTotal: number) {
+
+    console.log('Conteudo do carrinho');
+    for(let item of this.itensCarrinhos){
+      const subtotal = item.quantidade * item.precoUnitario;
+      console.log(`Nome: ${item.nome}, quantidade: ${item.quantidade}, Total: ${subtotal}`);
+    }
+    console.log(`Preço Total: ${precoTotal.toFixed(2)}, Quantidade Total: ${qtdTotal}`);
+    console.log('-------------')
   }
 }
