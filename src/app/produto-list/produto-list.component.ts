@@ -1,7 +1,9 @@
+import { CarrinhoService } from './../services/carrinho.service';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../services/produto.service';
 import { Produto } from '../common/produto';
 import { ActivatedRoute } from '@angular/router';
+import { ItemCarrinho } from '../common/item-carrinho';
 
 @Component({
   selector: 'app-produto-list',
@@ -25,8 +27,9 @@ export class ProdutoListComponent implements OnInit {
   palavraChaveAnterior: string = "";
 
   constructor(
+    private route: ActivatedRoute,
     private produtoService: ProdutoService,
-    private route: ActivatedRoute
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -49,7 +52,7 @@ export class ProdutoListComponent implements OnInit {
     const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
 
     //se tiver uma palavrachave diferente que a anterior, setamos pageNumber=1
-    if(this.palavraChaveAnterior != keyword){
+    if (this.palavraChaveAnterior != keyword) {
       this.pageNumber = 1;
     }
 
@@ -109,13 +112,21 @@ export class ProdutoListComponent implements OnInit {
 
   }
 
-  processResult(){
+  processResult() {
     return (data: any) => {
       this.produtos = data._embedded.produtos;
       this.pageNumber = data.page.number + 1;
       this.pageSize = data.page.size;
       this.totalElements = data.page.totalElements;
     };
+  }
+
+  adicionarAoCarrinho(produto: Produto) {
+    console.log(`Adicionando ao carrinho: ${produto.nome}, ${produto.precoUnitario}`);
+
+    const itemDoCarrinho = new ItemCarrinho(produto);
+
+    this.carrinhoService.adicionarAoCarrinho(itemDoCarrinho);
   }
 
 }

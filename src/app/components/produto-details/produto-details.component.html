@@ -5,7 +5,7 @@
 
     <h3>{{ produto.nome }}</h3>
     <div class="preco">{{ produto.precoUnitario | currency: 'BRL' }}</div>
-    <a  style="text-decoration: none;" href="#" class="primary-btn"> Adicionar ao carrinho</a>
+    <button (click)="adicionarAoCarrinho()" class="btn btn-primary btn-sm"> Adicionar ao carrinho</button>
 
     <hr>
     <h4>Descrição</h4>

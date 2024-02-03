@@ -11,6 +11,7 @@ import { PesquisarComponent } from './components/pesquisar/pesquisar.component';
 import { ProdutoDetailsComponent } from './components/produto-details/produto-details.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StatusCarrinhoComponent } from './components/status-carrinho/status-carrinho.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     CategoriaProdutoMenuComponent,
     PesquisarComponent,
     ProdutoDetailsComponent,
+    StatusCarrinhoComponent,
   ],
   imports: [
     NgbModule,
