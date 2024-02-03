@@ -14,27 +14,24 @@ export class CarrinhoService {
 
   constructor() { }
 
-  adicionarAoCarrinho(itemCarrinho: ItemCarrinho) {
+  adicionarAoCarrinho(oItemDoCarrinho: ItemCarrinho) {
     //verificar se já existe o item no carrinho
-    let itemJaNoCarrinho: boolean = false;
-    let itemAtualNoCarrinho: ItemCarrinho = undefined;
+    let itemNoCarrinho: boolean = false;
+    let itemExistenteNoCarrinho: ItemCarrinho = undefined;
 
     if (this.itensCarrinhos.length > 0) {
       //buscar o item no carrinho de acordo com o id do item
-      for (let item of this.itensCarrinhos) {
-        if (item.id === itemCarrinho.id) {
-          itemAtualNoCarrinho = item;
-          break;
-        }
-      }
-      // verificar se foi encontrado
-      itemJaNoCarrinho = (itemAtualNoCarrinho != undefined);
+
+      itemExistenteNoCarrinho = this.itensCarrinhos.find(item => item.id === oItemDoCarrinho.id)
     }
-    if(itemJaNoCarrinho){
-      itemAtualNoCarrinho.quantidade++;
+    // verificar se foi encontrado
+    itemNoCarrinho = (itemExistenteNoCarrinho != undefined);
+
+    if (itemNoCarrinho) {
+      itemExistenteNoCarrinho.quantidade++;
     }
-    else{
-      this.itensCarrinhos.push(itemCarrinho);
+    else {
+      this.itensCarrinhos.push(oItemDoCarrinho);
     }
     // calcular o preco total do carrinho e o total da quantidade.
     this.calcularCarrinhoTotal();
@@ -44,7 +41,7 @@ export class CarrinhoService {
     let valorPrecoTotal: number = 0;
     let valorQuantidadeTotal: number = 0;
 
-    for(let itemCarrinhoAtual of this.itensCarrinhos){
+    for (let itemCarrinhoAtual of this.itensCarrinhos) {
       valorPrecoTotal += itemCarrinhoAtual.quantidade * itemCarrinhoAtual.precoUnitario;
       valorQuantidadeTotal += itemCarrinhoAtual.quantidade;
     }
@@ -59,7 +56,7 @@ export class CarrinhoService {
   logCartData(precoTotal: number, qtdTotal: number) {
 
     console.log('Conteudo do carrinho');
-    for(let item of this.itensCarrinhos){
+    for (let item of this.itensCarrinhos) {
       const subtotal = item.quantidade * item.precoUnitario;
       console.log(`Nome: ${item.nome}, quantidade: ${item.quantidade}, Total: ${subtotal}`);
     }
