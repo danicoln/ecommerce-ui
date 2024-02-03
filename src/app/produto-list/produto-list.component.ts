@@ -1,7 +1,9 @@
+import { CarrinhoService } from './../services/carrinho.service';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../services/produto.service';
 import { Produto } from '../common/produto';
 import { ActivatedRoute } from '@angular/router';
+import { ItemCarrinho } from '../common/item-carrinho';
 
 @Component({
   selector: 'app-produto-list',
@@ -25,8 +27,9 @@ export class ProdutoListComponent implements OnInit {
   palavraChaveAnterior: string = "";
 
   constructor(
+    private route: ActivatedRoute,
     private produtoService: ProdutoService,
-    private route: ActivatedRoute
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -120,6 +123,10 @@ export class ProdutoListComponent implements OnInit {
 
   adicionarAoCarrinho(produto: Produto) {
     console.log(`Adicionando ao carrinho: ${produto.nome}, ${produto.precoUnitario}`);
+
+    const itemDoCarrinho = new ItemCarrinho(produto);
+
+    this.carrinhoService.adicionarAoCarrinho(itemDoCarrinho);
   }
 
 }
