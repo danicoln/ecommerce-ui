@@ -21,6 +21,16 @@
             <div class="itens">
               <label>Quantidade: </label> {{ item.quantidade }}
             </div>
+            <p class="mt-2">Subtotal: {{ item.quantidade * item.precoUnitario | currency: 'BRL' }}</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2"></td>
+          <td style="font-weight: bold;">
+            <p>Quantidade Total: {{ quantidadeTotal }}</p>
+            <p>Frete: GRÁTIS</p>
+            <p>Preço Total: {{ precoTotal | currency: 'BRL' }}</p>
           </td>
         </tr>
 
