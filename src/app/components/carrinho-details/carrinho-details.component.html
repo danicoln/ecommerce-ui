@@ -1,0 +1,77 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+
+      <div *ngIf="itensDoCarrinho.length > 0">
+        <table class="table table-bordered">
+          <tr>
+            <th width="20%">Imagem do Produto</th>
+            <th width="50%">Detalhe do Produto</th>
+            <th width="30%"></th>
+          </tr>
+
+          <tr *ngFor="let item of itensDoCarrinho">
+            <td>
+              <img src="{{item.imagemUrl}}" class="img-responsive" width="150px" />
+            </td>
+            <td>
+              <p>{{ item.nome }}</p>
+              <p>{{ item.precoUnitario | currency: 'BRL' }}</p>
+            </td>
+            <td>
+              <div class="itens">
+                <label>Quantidade: </label>
+
+                <div class="row no-gutters">
+                  <div class="col">
+                    <button (click)="incrementarQuantidade(item)" class="btn btn-primary btn-sm">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+
+                  <div class="col ml-4 mr-2">
+                    {{item.quantidade}}
+                  </div>
+
+                  <div class="col">
+                    <button (click)="decrementarQuantidade(item)" class="btn btn-primary btn-sm">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+
+                  <div class="col-8"></div> <!--apenas um espaçador para que as coisas possam se alinhar corretamente-->
+                </div>
+              </div>
+
+              <div class="col">
+                <button (click)="remover(item)" class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i> Remover
+                </button>
+              </div>
+
+              <p class="mt-2">Subtotal: {{ item.quantidade * item.precoUnitario | currency: 'BRL' }}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td style="font-weight: bold;">
+              <p>Quantidade Total: {{ quantidadeTotal }}</p>
+              <p>Frete: GRÁTIS</p>
+              <p>Preço Total: {{ precoTotal | currency: 'BRL' }}</p>
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+      <!-- se o carrinho estiver vazio, exibimos uma mensagem-->
+      <div *ngIf="itensDoCarrinho.length == 0" class="alert alert-warning col-md-12" role="alert">
+
+        Seu carrinho de compras está vazio.
+
+      </div>
+
+    </div>
+  </div>
+</div>

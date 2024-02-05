@@ -12,9 +12,10 @@ import { ProdutoDetailsComponent } from './components/produto-details/produto-de
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusCarrinhoComponent } from './components/status-carrinho/status-carrinho.component';
+import { CarrinhoDetailsComponent } from './components/carrinho-details/carrinho-details.component';
 
 const routes: Routes = [
-
+  {path: 'cart-details', component: CarrinhoDetailsComponent},
   {path: 'produtos/:id', component: ProdutoDetailsComponent},
   {path: 'pesquisar/:keyword', component: ProdutoListComponent},
   {path: 'categoria/:id/:nome', component: ProdutoListComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
     PesquisarComponent,
     ProdutoDetailsComponent,
     StatusCarrinhoComponent,
+    CarrinhoDetailsComponent,
   ],
   imports: [
     NgbModule,

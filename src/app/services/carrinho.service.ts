@@ -63,4 +63,28 @@ export class CarrinhoService {
     console.log(`Preço Total: ${precoTotal.toFixed(2)}, Quantidade Total: ${qtdTotal}`);
     console.log('-------------')
   }
+
+  decrementarQuantidade(item: ItemCarrinho) {
+    item.quantidade--;
+
+    if(item.quantidade === 0){
+      this.remove(item);
+    }
+    else{
+      this.calcularCarrinhoTotal();
+    }
+  }
+
+  remove(item: ItemCarrinho){
+    //pegar o indice do item no array
+    const indice = this.itensCarrinhos.findIndex(itemDoCarrinho => itemDoCarrinho.id === item.id);
+
+    //se encontrar, remover o item do array passando o indice.
+    if(indice > -1) {
+      this.itensCarrinhos.splice(indice, 1);
+
+      this.calcularCarrinhoTotal();
+    }
+  }
+
 }
