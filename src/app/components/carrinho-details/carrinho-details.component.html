@@ -43,6 +43,12 @@
                 </div>
               </div>
 
+              <div class="col">
+                <button (click)="remover(item)" class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i> Remover
+                </button>
+              </div>
+
               <p class="mt-2">Subtotal: {{ item.quantidade * item.precoUnitario | currency: 'BRL' }}</p>
             </td>
           </tr>

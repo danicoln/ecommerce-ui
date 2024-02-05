@@ -44,4 +44,8 @@ export class CarrinhoDetailsComponent implements OnInit {
       this.carrinhoService.decrementarQuantidade(item);
     }
 
+    remover(item: ItemCarrinho){
+      this.carrinhoService.remove(item);
+    }
+
 }
