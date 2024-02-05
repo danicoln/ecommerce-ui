@@ -20,8 +20,29 @@
             </td>
             <td>
               <div class="itens">
-                <label>Quantidade: </label> {{ item.quantidade }}
+                <label>Quantidade: </label>
+
+                <div class="row no-gutters">
+                  <div class="col">
+                    <button class="btn btn-primary btn-sm">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+
+                  <div class="col ml-4 mr-2">
+                    {{item.quantidade}}
+                  </div>
+
+                  <div class="col">
+                    <button class="btn btn-primary btn-sm">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+
+                  <div class="col-8"></div> <!--apenas um espaçador para que as coisas possam se alinhar corretamente-->
+                </div>
               </div>
+
               <p class="mt-2">Subtotal: {{ item.quantidade * item.precoUnitario | currency: 'BRL' }}</p>
             </td>
           </tr>
