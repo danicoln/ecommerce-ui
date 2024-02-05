@@ -36,4 +36,12 @@ export class CarrinhoDetailsComponent implements OnInit {
     this.carrinhoService.calcularCarrinhoTotal();
   }
 
+  incrementarQuantidade(item: ItemCarrinho) {
+    this.carrinhoService.adicionarAoCarrinho(item);
+    }
+
+    decrementarQuantidade(item: ItemCarrinho){
+      this.carrinhoService.decrementarQuantidade(item);
+    }
+
 }

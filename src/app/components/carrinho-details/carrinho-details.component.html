@@ -24,7 +24,7 @@
 
                 <div class="row no-gutters">
                   <div class="col">
-                    <button class="btn btn-primary btn-sm">
+                    <button (click)="incrementarQuantidade(item)" class="btn btn-primary btn-sm">
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
@@ -34,7 +34,7 @@
                   </div>
 
                   <div class="col">
-                    <button class="btn btn-primary btn-sm">
+                    <button (click)="decrementarQuantidade(item)" class="btn btn-primary btn-sm">
                       <i class="fas fa-minus"></i>
                     </button>
                   </div>
