@@ -8,6 +8,22 @@
           <th width="50%">Detalhe do Produto</th>
           <th width="30%"></th>
         </tr>
+
+        <tr *ngFor="let item of itensDoCarrinho">
+          <td>
+            <img src="{{item.imagemUrl}}" class="img-responsive" width="150px" />
+          </td>
+          <td>
+            <p>{{ item.nome }}</p>
+            <p>{{ item.precoUnitario | currency: 'BRL' }}</p>
+          </td>
+          <td>
+            <div class="itens">
+              <label>Quantidade: </label> {{ item.quantidade }}
+            </div>
+          </td>
+        </tr>
+
       </table>
     </div>
   </div>
