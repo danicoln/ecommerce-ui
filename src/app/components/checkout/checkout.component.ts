@@ -19,7 +19,29 @@ export class CheckoutComponent implements OnInit {
         nome: [''],
         sobreNome: [''],
         email: ['']
-      })
+      }),
+      enderecoEntrega: this.formBuilder.group({
+        logradouro: [''],
+        cidade: [''],
+        estado: [''],
+        pais: [''],
+        cep: ['']
+      }),
+      enderecoCobranca: this.formBuilder.group({
+        logradouro: [''],
+        cidade: [''],
+        estado: [''],
+        pais: [''],
+        cep: ['']
+      }),
+      cartaoCredito: this.formBuilder.group({
+        tipoCartao: [''],
+        nomeCartao: [''],
+        numeroCartao: [''],
+        codSeguranca: [''],
+        mesExpiracao: [''],
+        anoExpiracao: ['']
+      }),
     });
   }
 
