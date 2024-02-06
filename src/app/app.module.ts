@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatusCarrinhoComponent } from './components/status-carrinho/status-carrinho.component';
 import { CarrinhoDetailsComponent } from './components/carrinho-details/carrinho-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
@@ -42,7 +43,8 @@ const routes: Routes = [
     NgbModule,
     RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProdutoService],
   bootstrap: [AppComponent]
