@@ -264,6 +264,15 @@
 
         </div>
 
+        <!-- Detalhes do pedido -->
+        <div class="form-area">
+          <h3>Revise seu pedido</h3>
+
+          <p>Quantidade total: {{ quantidadeTotal }}</p>
+          <p>Frete: GRÁTIS</p>
+          <p>Preço total: {{ precoTotal | currency: 'BRL' }}</p>
+        </div>
+
         <!--botão submit-->
         <div class="text-center">
           <button type="submit" class="btn btn-info">Comprar</button>
