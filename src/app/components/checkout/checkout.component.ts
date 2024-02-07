@@ -51,4 +51,14 @@ export class CheckoutComponent implements OnInit {
     console.log("O email é: " + this.checkoutFormGroup.get('cliente').value.email);
   }
 
+  copiarEndereco(event){
+
+    if(event.target.checked){
+      this.checkoutFormGroup.controls['enderecoCobranca']
+        .setValue(this.checkoutFormGroup.controls['enderecoEntrega'].value);
+    }
+    else{
+      this.checkoutFormGroup.controls['enderecoCobranca'].reset();
+    }
+  }
 }

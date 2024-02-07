@@ -109,6 +109,80 @@
 
         </div>
 
+        <!--Adicionar um check box para copiar o endereço-->
+        <div class="input-space">
+          <label class="au-checkbox">
+            <input type="checkbox" (change)="copiarEndereco($event)">
+            <span class="au-checkmark"></span>O endereço de cobrança é o mesmo da entrega?
+          </label>
+        </div>
+
+        <!--Endereço de cobrança-->
+        <div formGroupName="enderecoCobranca" class="form-area">
+          <h3>Endereço de cobrança</h3>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>País</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="pais" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Logradouro</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="logradouro" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Cidade</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cidade" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Estado</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="estado" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Cep</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cep" type="text">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
         <!--botão submit-->
         <div class="text-center">
           <button type="submit" class="btn btn-info">Comprar</button>
