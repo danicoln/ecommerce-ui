@@ -38,7 +38,7 @@ export class CheckoutComponent implements OnInit {
         tipoCartao: [''],
         nomeCartao: [''],
         numeroCartao: [''],
-        codSeguranca: [''],
+        codigoSeguranca: [''],
         mesExpiracao: [''],
         anoExpiracao: ['']
       }),
