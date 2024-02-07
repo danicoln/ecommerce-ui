@@ -1,0 +1,284 @@
+<div class="main-content page-m">
+
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+
+      <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+
+        <!--formulario de clientes-->
+        <div formGroupName="cliente" class="form-area">
+          <h3>Cliente</h3>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Nome</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="nome" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Sobrenome</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="sobreNome" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>E-mail</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="email" type="text">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!--formulario de endereço entrega-->
+        <div formGroupName="enderecoEntrega" class="form-area">
+          <h3>Endereço de entrega</h3>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>País</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="pais" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Logradouro</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="logradouro" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Cidade</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cidade" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Estado</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="estado" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Cep</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cep" type="text">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!--Adicionar um check box para copiar o endereço-->
+        <div class="input-space">
+          <label class="au-checkbox">
+            <input type="checkbox" (change)="copiarEndereco($event)">
+            <span class="au-checkmark"></span>O endereço de cobrança é o mesmo da entrega?
+          </label>
+        </div>
+
+        <!--Endereço de cobrança-->
+        <div formGroupName="enderecoCobranca" class="form-area">
+          <h3>Endereço de cobrança</h3>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>País</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="pais" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Logradouro</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="logradouro" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Cidade</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cidade" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Estado</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="estado" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Cep</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cep" type="text">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!--cartão de crédito -->
+        <div formGroupName="cartaoCredito" class="form-area">
+          <h3>Cartão de Crédito</h3>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Tipo do cartão</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="tipoCartao" >
+                  <option>Visa</option>
+                  <option>Mastercard</option>
+                  <option>Cielo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Nome do Cartão</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="nomeCartao" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Número do Cartão</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="numeroCartao" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Código de Segurança</label>
+            </div>
+            <div class="col-md-9">
+              <div class="col-md-9">
+                <div class="input-space">
+                  <input formControlName="codigoSeguranca" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Mês de Expiração</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="mesExpiracao" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <label>Ano de Expiração</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="anoExpiracao" >
+                  <option>TO DO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Detalhes do pedido -->
+        <div class="form-area">
+          <h3>Revise seu pedido</h3>
+
+          <p>Quantidade total: {{ quantidadeTotal }}</p>
+          <p>Frete: GRÁTIS</p>
+          <p>Preço total: {{ precoTotal | currency: 'BRL' }}</p>
+        </div>
+
+        <!--botão submit-->
+        <div class="text-center">
+          <button type="submit" class="btn btn-info">Comprar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
