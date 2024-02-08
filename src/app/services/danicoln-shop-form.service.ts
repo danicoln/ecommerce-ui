@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Pais } from '../common/pais';
+import { Estado } from '../common/estado';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,26 @@ export class DanicolnShopFormService {
   private estadosUrl = 'http://localhost:8080/api/estados';
 
   constructor(private httpClient: HttpClient) { }
+
+  getPaises(): Observable<Pais[]> {
+
+    return this.httpClient.get<GetResponsePaises>(this.paisesUrl).pipe(
+      map(response => response._embedded.paises)
+    );
+  }
+
+  getEstados(codePais: string): Observable<Estado[]> {
+
+    //busca url
+    const searchEstadosUrl = `${this.estadosUrl}/search/findByPaisCode?code=${codePais}`;
+
+    return this.httpClient.get<GetResponseEstados>(searchEstadosUrl).pipe(
+      map(response => response._embedded.estados)
+    );
+
+  }
+
+
 
   getCartaoCreditoMes(mesInicio: number): Observable<number[]> {
 
@@ -40,6 +63,20 @@ export class DanicolnShopFormService {
   }
 
 }
+
+interface GetResponsePaises {
+  _embedded: {
+    paises: Pais[];
+  }
+}
+
+interface GetResponseEstados {
+  _embedded: {
+    estados: Estado[];
+  }
+}
+
+/** =========================================================================== */
 
 /** Observação de observável
  *
