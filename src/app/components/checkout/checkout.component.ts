@@ -1,7 +1,8 @@
+import { Pais } from './../../common/pais';
 import { DanicolnShopFormService } from './../../services/danicoln-shop-form.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Pais } from 'src/app/common/pais';
+import { Estado } from 'src/app/common/estado';
 
 @Component({
   selector: 'app-checkout',
@@ -19,6 +20,9 @@ export class CheckoutComponent implements OnInit {
   cartaoCreditoMes: number[] = [];
 
   paises: Pais[] = [];
+
+  enderecoEntregaEstados: Estado[] = [];
+  enderecoCobrancaEstados: Estado[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -127,5 +131,31 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
+
+  getEstados(formGroupName: string) {
+
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+
+    const paisCode = formGroup.value.pais.code;
+    const paisNome = formGroup.value.pais.name;
+
+    console.log(`${formGroupName} codigo do País: ${paisCode}`);
+    console.log(`${formGroupName} noem do País: ${paisNome}`);
+
+    this.danicolnShopFormService.getEstados(paisCode).subscribe(
+      data => {
+
+        if(formGroupName === 'enderecoEntrega'){
+          this.enderecoEntregaEstados = data;
+        }
+        else {
+          this.enderecoCobrancaEstados = data;
+        }
+
+        //seleciona o primeiro item como padrão
+        formGroup.get('estado').setValue(data[0]);
+      }
+    )
+    }
 
 }
