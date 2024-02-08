@@ -1,6 +1,7 @@
 import { DanicolnShopFormService } from './../../services/danicoln-shop-form.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Pais } from 'src/app/common/pais';
 
 @Component({
   selector: 'app-checkout',
@@ -16,6 +17,8 @@ export class CheckoutComponent implements OnInit {
 
   cartaoCreditoAno: number[] = [];
   cartaoCreditoMes: number[] = [];
+
+  paises: Pais[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -72,6 +75,15 @@ export class CheckoutComponent implements OnInit {
         this.cartaoCreditoAno = data;
       }
     )
+
+    //popular paises
+
+    this.danicolnShopFormService.getPaises().subscribe(
+      data => {
+        console.log("País recuperado: " + JSON.stringify(data));
+        this.paises = data;
+      }
+    );
   }
 
   onSubmit() {
