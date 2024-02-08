@@ -1,3 +1,4 @@
+import { DanicolnShopFormService } from './../../services/danicoln-shop-form.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -13,7 +14,13 @@ export class CheckoutComponent implements OnInit {
   precoTotal: number = 0;
   quantidadeTotal: number = 0;
 
-  constructor(private formBuilder: FormBuilder) { }
+  cartaoCreditoAno: number[] = [];
+  cartaoCreditoMes: number[] = [];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private danicolnShopFormService: DanicolnShopFormService
+    ) { }
 
   ngOnInit(): void {
 
@@ -46,6 +53,25 @@ export class CheckoutComponent implements OnInit {
         anoExpiracao: ['']
       }),
     });
+
+    // popular cartaoCreditoMes
+    const mesInicio: number = new Date().getMonth() + 1;
+    console.log("Mês início: " + mesInicio);
+
+    this.danicolnShopFormService.getCartaoCreditoMes(mesInicio).subscribe(
+      data => {
+        console.log("Cartão de crédito mês recuperado: " + JSON.stringify(data));
+        this.cartaoCreditoMes = data;
+      }
+    )
+
+    // popular cartaoCreditoAno
+    this.danicolnShopFormService.getCartaoCreditoAno().subscribe(
+      data => {
+        console.log("Cartão de crédito ano recuperado: " + JSON.stringify(data));
+        this.cartaoCreditoAno = data;
+      }
+    )
   }
 
   onSubmit(){
