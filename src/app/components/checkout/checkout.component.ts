@@ -20,7 +20,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private danicolnShopFormService: DanicolnShopFormService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -74,20 +74,46 @@ export class CheckoutComponent implements OnInit {
     )
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log("Manipulando o botão submit");
     console.log(this.checkoutFormGroup.get('cliente').value);
     console.log("O email é: " + this.checkoutFormGroup.get('cliente').value.email);
   }
 
-  copiarEndereco(event){
+  copiarEndereco(event) {
 
-    if(event.target.checked){
+    if (event.target.checked) {
       this.checkoutFormGroup.controls['enderecoCobranca']
         .setValue(this.checkoutFormGroup.controls['enderecoEntrega'].value);
     }
-    else{
+    else {
       this.checkoutFormGroup.controls['enderecoCobranca'].reset();
     }
   }
+
+  manipularMesEAno() {
+
+    const cartaoCreditoFormGroup = this.checkoutFormGroup.get('cartaoCredito');
+
+    const anoAtual: number = new Date().getFullYear();
+    const anoSelecionado: number = Number(cartaoCreditoFormGroup.value.anoExpiracao);
+
+    let mesInicio: number;
+
+    if (anoAtual === anoSelecionado) {
+      mesInicio = new Date().getMonth() + 1;
+    }
+    else {
+      mesInicio = 1;
+    }
+
+    this.danicolnShopFormService.getCartaoCreditoMes(mesInicio).subscribe(
+      data => {
+        console.log("Cartão de crédito mês recuperado (met: manipularMesAno): " + JSON.stringify(data));
+        this.cartaoCreditoMes = data;
+
+      }
+    );
+  }
+
 }

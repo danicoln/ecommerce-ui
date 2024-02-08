@@ -242,7 +242,7 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="mesExpiracao">
+                <select formControlName="mesExpiracao" (change)="manipularMesEAno()">
                   <option *ngFor="let mes of cartaoCreditoMes">
                     {{ mes }}
                   </option>
