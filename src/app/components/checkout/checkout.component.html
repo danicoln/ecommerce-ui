@@ -132,7 +132,7 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="pais" (change)="getEstados('enderecoCobranca')">
-                  <option *ngFor="let pais of paises" [ngValue]="paises">
+                  <option *ngFor="let pais of paises" [ngValue]="pais">
                     {{ pais.name }}
                   </option>
                 </select>

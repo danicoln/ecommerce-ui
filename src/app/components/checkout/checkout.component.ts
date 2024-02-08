@@ -105,9 +105,16 @@ export class CheckoutComponent implements OnInit {
     if (event.target.checked) {
       this.checkoutFormGroup.controls['enderecoCobranca']
         .setValue(this.checkoutFormGroup.controls['enderecoEntrega'].value);
+
+        //correção de bug para estados
+         this.enderecoCobrancaEstados = this.enderecoEntregaEstados;
+
     }
     else {
       this.checkoutFormGroup.controls['enderecoCobranca'].reset();
+
+      //correção de bug para estados
+      this.enderecoCobrancaEstados = [];
     }
   }
 
