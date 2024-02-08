@@ -54,8 +54,10 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="pais" >
-                  <option>TO DO</option>
+                <select formControlName="pais" (change)="getEstados('enderecoEntrega')">
+                  <option *ngFor="let pais of paises" [ngValue]="pais">
+                    {{ pais.name }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -89,8 +91,10 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="estado" >
-                  <option>TO DO</option>
+                <select formControlName="estado">
+                  <option *ngFor="let estado of enderecoEntregaEstados" [ngValue]="estado">
+                    {{ estado.name }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -127,8 +131,10 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="pais" >
-                  <option>TO DO</option>
+                <select formControlName="pais" (change)="getEstados('enderecoCobranca')">
+                  <option *ngFor="let pais of paises" [ngValue]="pais">
+                    {{ pais.name }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -162,8 +168,10 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="estado" >
-                  <option>TO DO</option>
+                <select formControlName="estado">
+                  <option *ngFor="let estado of enderecoCobrancaEstados" [ngValue]="estado">
+                    {{ estado.name }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -192,7 +200,7 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="tipoCartao" >
+                <select formControlName="tipoCartao">
                   <option>Visa</option>
                   <option>Mastercard</option>
                   <option>Cielo</option>
@@ -242,8 +250,10 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="mesExpiracao" >
-                  <option>TO DO</option>
+                <select formControlName="mesExpiracao" (change)="manipularMesEAno()">
+                  <option *ngFor="let mes of cartaoCreditoMes">
+                    {{ mes }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -255,8 +265,10 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="anoExpiracao" >
-                  <option>TO DO</option>
+                <select formControlName="anoExpiracao">
+                  <option *ngFor="let ano of cartaoCreditoAno">
+                    {{ ano }}
+                  </option>
                 </select>
               </div>
             </div>

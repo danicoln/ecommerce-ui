@@ -55,7 +55,7 @@ export class CarrinhoService {
 
   logCartData(precoTotal: number, qtdTotal: number) {
 
-    console.log('Conteudo do carrinho');
+    //console.log('Conteudo do carrinho');
     for (let item of this.itensCarrinhos) {
       const subtotal = item.quantidade * item.precoUnitario;
       console.log(`Nome: ${item.nome}, quantidade: ${item.quantidade}, Total: ${subtotal}`);

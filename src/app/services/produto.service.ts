@@ -68,7 +68,7 @@ export class ProdutoService {
   getCategoriaDeProdutos(): Observable<CategoriaProduto[]> {
 
     return this.http.get<GetResponseCategoriaDeProduto>(this.categoriaUrl).pipe(
-      tap(response => console.log(response)),
+      //tap(response => console.log(response)),
       map(response => response._embedded.categoriaProduto)
     );
   }
