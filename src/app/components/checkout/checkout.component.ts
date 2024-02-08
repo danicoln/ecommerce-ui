@@ -63,11 +63,11 @@ export class CheckoutComponent implements OnInit {
 
     // popular cartaoCreditoMes
     const mesInicio: number = new Date().getMonth() + 1;
-    console.log("Mês início: " + mesInicio);
+    //console.log("Mês início: " + mesInicio);
 
     this.danicolnShopFormService.getCartaoCreditoMes(mesInicio).subscribe(
       data => {
-        console.log("Cartão de crédito mês recuperado: " + JSON.stringify(data));
+        //console.log("Cartão de crédito mês recuperado: " + JSON.stringify(data));
         this.cartaoCreditoMes = data;
       }
     )
@@ -75,7 +75,7 @@ export class CheckoutComponent implements OnInit {
     // popular cartaoCreditoAno
     this.danicolnShopFormService.getCartaoCreditoAno().subscribe(
       data => {
-        console.log("Cartão de crédito ano recuperado: " + JSON.stringify(data));
+        //console.log("Cartão de crédito ano recuperado: " + JSON.stringify(data));
         this.cartaoCreditoAno = data;
       }
     )
@@ -84,7 +84,7 @@ export class CheckoutComponent implements OnInit {
 
     this.danicolnShopFormService.getPaises().subscribe(
       data => {
-        console.log("País recuperado: " + JSON.stringify(data));
+        //console.log("País recuperado: " + JSON.stringify(data));
         this.paises = data;
       }
     );
@@ -94,6 +94,10 @@ export class CheckoutComponent implements OnInit {
     console.log("Manipulando o botão submit");
     console.log(this.checkoutFormGroup.get('cliente').value);
     console.log("O email é: " + this.checkoutFormGroup.get('cliente').value.email);
+
+    console.log("O País do endereço de entrega é: " + this.checkoutFormGroup.get('enderecoEntrega').value.pais.name);
+    console.log("O Estado do endereço de entrega é: " + this.checkoutFormGroup.get('enderecoEntrega').value.estado.name);
+
   }
 
   copiarEndereco(event) {
@@ -140,7 +144,7 @@ export class CheckoutComponent implements OnInit {
     const paisNome = formGroup.value.pais.name;
 
     console.log(`${formGroupName} codigo do País: ${paisCode}`);
-    console.log(`${formGroupName} noem do País: ${paisNome}`);
+    console.log(`${formGroupName} nome do País: ${paisNome}`);
 
     this.danicolnShopFormService.getEstados(paisCode).subscribe(
       data => {
