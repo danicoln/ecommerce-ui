@@ -3,6 +3,7 @@ import { DanicolnShopFormService } from './../../services/danicoln-shop-form.ser
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Estado } from 'src/app/common/estado';
+import { DanicolnShopValidators } from 'src/app/validators/danicoln-shop-validators';
 
 @Component({
   selector: 'app-checkout',
@@ -33,8 +34,18 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutFormGroup = this.formBuilder.group({
       cliente: this.formBuilder.group({
-        nome: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        sobreNome: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        nome: new FormControl('',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            DanicolnShopValidators.campoEmBranco
+          ]),
+        sobreNome: new FormControl('',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            DanicolnShopValidators.campoEmBranco
+          ]),
         email: new FormControl('',
         [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),

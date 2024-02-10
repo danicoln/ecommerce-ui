@@ -19,7 +19,7 @@
 
                 <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
 
-                  <div *ngIf="nome.errors['required']">
+                  <div *ngIf="nome.errors['required'] || nome.errors['campoEmBranco']">
                     Nome é obrigatório.
                   </div>
                   <div *ngIf="nome.errors['minlength']">
@@ -41,7 +41,7 @@
 
                 <div *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)" class="alert alert-danger">
 
-                  <div *ngIf="sobreNome.errors['required']">
+                  <div *ngIf="sobreNome.errors['required']  || sobreNome.errors['campoEmBranco']">
                     Sobrenome é obrigatório.
                   </div>
                   <div *ngIf="sobreNome.errors['minlength']">
