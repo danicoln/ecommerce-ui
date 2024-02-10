@@ -1,7 +1,7 @@
 import { Pais } from './../../common/pais';
 import { DanicolnShopFormService } from './../../services/danicoln-shop-form.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Estado } from 'src/app/common/estado';
 
 @Component({
@@ -33,9 +33,10 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutFormGroup = this.formBuilder.group({
       cliente: this.formBuilder.group({
-        nome: [''],
-        sobreNome: [''],
-        email: ['']
+        nome: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        sobreNome: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        email: new FormControl('',
+        [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       enderecoEntrega: this.formBuilder.group({
         logradouro: [''],
