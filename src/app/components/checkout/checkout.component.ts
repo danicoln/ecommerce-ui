@@ -101,6 +101,18 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+  get nome() {
+    return this.checkoutFormGroup.get('cliente.nome');
+  }
+
+  get sobreNome() {
+    return this.checkoutFormGroup.get('cliente.sobreNome');
+  }
+
+  get email() {
+    return this.checkoutFormGroup.get('cliente.email');
+  }
+
   copiarEndereco(event) {
 
     if (event.target.checked) {
