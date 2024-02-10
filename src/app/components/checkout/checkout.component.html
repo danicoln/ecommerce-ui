@@ -23,7 +23,7 @@
                     Nome é obrigatório.
                   </div>
                   <div *ngIf="nome.errors['minlength']">
-                    Nome precisa conter no mínimo 2 caracteres.
+                    Nome deve conter no mínimo 2 caracteres.
                   </div>
 
                 </div>
@@ -38,6 +38,18 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="sobreNome" type="text">
+
+                <div *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)" class="alert alert-danger">
+
+                  <div *ngIf="sobreNome.errors['required']">
+                    Sobrenome é obrigatório.
+                  </div>
+                  <div *ngIf="sobreNome.errors['minlength']">
+                    Sobrenome deve conter no mínimo 2 caracteres.
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>
@@ -49,6 +61,18 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="email" type="text">
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                  <div *ngIf="email.errors['required']">
+                    E-mail é obrigatório.
+                  </div>
+                  <div *ngIf="email.errors['pattern']">
+                    E-mail deve ter um formato de endereço válido.
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>
