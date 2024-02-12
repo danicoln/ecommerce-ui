@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ItemCarrinho } from '../common/item-carrinho';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,8 @@ export class CarrinhoService {
 
   itensCarrinhos: ItemCarrinho[] = [];
 
-  precoTotal: Subject<number> = new Subject<number>();
-  quantidadeTotal: Subject<number> = new Subject<number>();
+  precoTotal: Subject<number> = new BehaviorSubject<number>(0);
+  quantidadeTotal: Subject<number> = new BehaviorSubject<number>(0);
 
   constructor() { }
 
