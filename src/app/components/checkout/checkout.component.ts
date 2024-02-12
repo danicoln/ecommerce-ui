@@ -50,11 +50,17 @@ export class CheckoutComponent implements OnInit {
         [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       enderecoEntrega: this.formBuilder.group({
-        logradouro: [''],
-        cidade: [''],
-        estado: [''],
-        pais: [''],
-        cep: ['']
+        logradouro: new FormControl('',[Validators.required,
+          Validators.minLength(2),
+          DanicolnShopValidators.campoEmBranco]),
+        cidade: new FormControl('',[Validators.required,
+          Validators.minLength(2),
+          DanicolnShopValidators.campoEmBranco]),
+        estado: new FormControl('',[Validators.required]),
+        pais: new FormControl('',[Validators.required]),
+        cep: new FormControl('',[Validators.required,
+          Validators.minLength(2),
+          DanicolnShopValidators.campoEmBranco]),
       }),
       enderecoCobranca: this.formBuilder.group({
         logradouro: [''],
@@ -127,6 +133,26 @@ export class CheckoutComponent implements OnInit {
 
   get email() {
     return this.checkoutFormGroup.get('cliente.email');
+  }
+
+  get enderecoEntregaLogradouro() {
+    return this.checkoutFormGroup.get('enderecoEntrega.logradouro');
+  }
+
+  get enderecoEntregaCidade() {
+    return this.checkoutFormGroup.get('enderecoEntrega.cidade');
+  }
+
+  get enderecoEntregaEstado() {
+    return this.checkoutFormGroup.get('enderecoEntrega.estado');
+  }
+
+  get enderecoEntregaCep() {
+    return this.checkoutFormGroup.get('enderecoEntrega.cep');
+  }
+
+  get enderecoEntregaPais() {
+    return this.checkoutFormGroup.get('enderecoEntrega.pais');
   }
 
   copiarEndereco(event) {
