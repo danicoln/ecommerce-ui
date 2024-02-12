@@ -322,6 +322,13 @@
                   <option>Mastercard</option>
                   <option>Cielo</option>
                 </select>
+
+                <div *ngIf="cartaoCreditoTipo.invalid && (cartaoCreditoTipo.dirty || cartaoCreditoTipo.touched)" class="alert alert-danger">
+                  <div *ngIf="cartaoCreditoTipo.errors['required']">
+                    Tipo do cartão de crédito é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -333,6 +340,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="nomeCartao" type="text">
+
+                <div *ngIf="cartaoCreditoNome.invalid && (cartaoCreditoNome.dirty || cartaoCreditoNome.touched)" class="alert alert-danger">
+                  <div *ngIf="cartaoCreditoNome.errors['required'] || cartaoCreditoNome.errors['campoEmBranco']">
+                    Nome do cartão de crédito é obrigatório.
+                  </div>
+                  <div *ngIf="cartaoCreditoNome.errors['minlength']">
+                    Nome do cartão deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -344,6 +361,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="numeroCartao" type="text">
+
+                <div *ngIf="cartaoCreditoNumero.invalid && (cartaoCreditoNumero.dirty || cartaoCreditoNumero.touched)" class="alert alert-danger">
+                  <div *ngIf="cartaoCreditoNumero.errors['required']">
+                    Número do cartão de crédito é obrigatório.
+                  </div>
+                  <div *ngIf="cartaoCreditoNumero.errors['pattern']">
+                    Número do cartão de crédito precisa conter 16 dígitos.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

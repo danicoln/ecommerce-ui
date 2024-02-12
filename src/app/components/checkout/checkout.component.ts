@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit {
       }),
       cartaoCredito: this.formBuilder.group({
         tipoCartao: new FormControl('',[Validators.required]),
-        nomeCartao: new FormControl('',[Validators.required,
+        nomeCartao: new FormControl('',[Validators.required, Validators.minLength(2),
           DanicolnShopValidators.campoEmBranco]),
         numeroCartao: new FormControl('',[Validators.required, Validators.pattern('[0-9]{16}')]), // com a expressão regular, configuramos para verificar se tem até 16 dígitos
         codigoSeguranca: new FormControl('',[Validators.required, Validators.pattern('[0-9]{3}')]),
@@ -188,7 +188,7 @@ export class CheckoutComponent implements OnInit {
   get cartaoCreditoCodigo() {
     return this.checkoutFormGroup.get('cartaoCredito.codigoSeguranca');
   }
- 
+
   copiarEndereco(event) {
 
     if (event.target.checked) {
