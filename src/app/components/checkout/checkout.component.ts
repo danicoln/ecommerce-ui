@@ -70,10 +70,11 @@ export class CheckoutComponent implements OnInit {
           DanicolnShopValidators.campoEmBranco]),
       }),
       cartaoCredito: this.formBuilder.group({
-        tipoCartao: [''],
-        nomeCartao: [''],
-        numeroCartao: [''],
-        codigoSeguranca: [''],
+        tipoCartao: new FormControl('',[Validators.required]),
+        nomeCartao: new FormControl('',[Validators.required,
+          DanicolnShopValidators.campoEmBranco]),
+        numeroCartao: new FormControl('',[Validators.required, Validators.pattern('[0-9]{16}')]), // com a expressão regular, configuramos para verificar se tem até 16 dígitos
+        codigoSeguranca: new FormControl('',[Validators.required, Validators.pattern('[0-9]{3}')]),
         mesExpiracao: [''],
         anoExpiracao: ['']
       }),
@@ -175,6 +176,19 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutFormGroup.get('enderecoCobranca.pais');
   }
 
+  get cartaoCreditoTipo() {
+    return this.checkoutFormGroup.get('cartaoCredito.tipoCartao');
+  }
+  get cartaoCreditoNome() {
+    return this.checkoutFormGroup.get('cartaoCredito.nomeCartao');
+  }
+  get cartaoCreditoNumero() {
+    return this.checkoutFormGroup.get('cartaoCredito.numeroCartao');
+  }
+  get cartaoCreditoCodigo() {
+    return this.checkoutFormGroup.get('cartaoCredito.codigoSeguranca');
+  }
+ 
   copiarEndereco(event) {
 
     if (event.target.checked) {
