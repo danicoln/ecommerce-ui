@@ -94,6 +94,15 @@
                     {{ pais.name }}
                   </option>
                 </select>
+
+                <div *ngIf="enderecoEntregaPais.invalid && (enderecoEntregaPais.dirty || enderecoEntregaPais.touched)" class="alert alert-danger">
+
+                  <div *ngIf="enderecoEntregaPais.errors['required']">
+                    País é obrigatório.
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>
