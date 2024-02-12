@@ -16,6 +16,17 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="nome" type="text">
+
+                <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
+
+                  <div *ngIf="nome.errors['required'] || nome.errors['campoEmBranco']">
+                    Nome é obrigatório.
+                  </div>
+                  <div *ngIf="nome.errors['minlength']">
+                    Nome deve conter no mínimo 2 caracteres.
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -27,6 +38,18 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="sobreNome" type="text">
+
+                <div *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)" class="alert alert-danger">
+
+                  <div *ngIf="sobreNome.errors['required']  || sobreNome.errors['campoEmBranco']">
+                    Sobrenome é obrigatório.
+                  </div>
+                  <div *ngIf="sobreNome.errors['minlength']">
+                    Sobrenome deve conter no mínimo 2 caracteres.
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>
@@ -38,6 +61,18 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="email" type="text">
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                  <div *ngIf="email.errors['required']">
+                    E-mail é obrigatório.
+                  </div>
+                  <div *ngIf="email.errors['pattern']">
+                    E-mail deve ter um formato de endereço válido.
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </div>
@@ -59,6 +94,13 @@
                     {{ pais.name }}
                   </option>
                 </select>
+
+                <div *ngIf="enderecoEntregaPais.invalid && (enderecoEntregaPais.dirty || enderecoEntregaPais.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaPais.errors['required']">
+                    País é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -70,6 +112,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="logradouro" type="text">
+
+                <div *ngIf="enderecoEntregaLogradouro.invalid && (enderecoEntregaLogradouro.dirty || enderecoEntregaLogradouro.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaLogradouro.errors['required'] || enderecoEntregaLogradouro.errors['campoEmBranco']">
+                    Logradouro é obrigatório.
+                  </div>
+                  <div *ngIf="enderecoEntregaLogradouro.errors['minlength']">
+                    Logradouro deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -81,6 +133,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cidade" type="text">
+
+                <div *ngIf="enderecoEntregaCidade.invalid && (enderecoEntregaCidade.dirty || enderecoEntregaCidade.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaCidade.errors['required'] || enderecoEntregaCidade.errors['campoEmBranco']">
+                    Cidade é obrigatório.
+                  </div>
+                  <div *ngIf="enderecoEntregaCidade.errors['minlength']">
+                    Cidade deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -96,6 +158,13 @@
                     {{ estado.name }}
                   </option>
                 </select>
+
+                <div *ngIf="enderecoEntregaEstado.invalid && (enderecoEntregaEstado.dirty || enderecoEntregaEstado.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaEstado.errors['required']">
+                    Estado é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -107,6 +176,13 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cep" type="text">
+
+                <div *ngIf="enderecoEntregaCep.invalid && (enderecoEntregaCep.dirty || enderecoEntregaCep.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaCep.errors['required'] || enderecoEntregaCep.errors['campoEmBranco']">
+                    Cep é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -136,6 +212,13 @@
                     {{ pais.name }}
                   </option>
                 </select>
+
+                <div *ngIf="enderecoCobrancaPais.invalid && (enderecoCobrancaPais.dirty || enderecoCobrancaPais.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoCobrancaPais.errors['required']">
+                    País é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -147,6 +230,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="logradouro" type="text">
+
+                <div *ngIf="enderecoCobrancaLogradouro.invalid && (enderecoCobrancaLogradouro.dirty || enderecoCobrancaLogradouro.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoCobrancaLogradouro.errors['required'] || enderecoCobrancaLogradouro.errors['campoEmBranco']">
+                    Logradouro é obrigatório.
+                  </div>
+                  <div *ngIf="enderecoCobrancaLogradouro.errors['minlength']">
+                    Logradouro deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -158,6 +251,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cidade" type="text">
+
+                <div *ngIf="enderecoCobrancaCidade.invalid && (enderecoCobrancaCidade.dirty || enderecoCobrancaCidade.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoCobrancaCidade.errors['required'] || enderecoCobrancaCidade.errors['campoEmBranco']">
+                    Cidade é obrigatório.
+                  </div>
+                  <div *ngIf="enderecoCobrancaCidade.errors['minlength']">
+                    Cidade deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -173,6 +276,13 @@
                     {{ estado.name }}
                   </option>
                 </select>
+
+                <div *ngIf="enderecoCobrancaEstado.invalid && (enderecoCobrancaEstado.dirty || enderecoCobrancaEstado.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoCobrancaEstado.errors['required']">
+                    Estado é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -184,6 +294,13 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cep" type="text">
+
+                <div *ngIf="enderecoCobrancaCep.invalid && (enderecoCobrancaCep.dirty || enderecoCobrancaCep.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoCobrancaCep.errors['required'] || enderecoCobrancaCep.errors['campoEmBranco']">
+                    Cep é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -205,6 +322,13 @@
                   <option>Mastercard</option>
                   <option>Cielo</option>
                 </select>
+
+                <div *ngIf="cartaoCreditoTipo.invalid && (cartaoCreditoTipo.dirty || cartaoCreditoTipo.touched)" class="alert alert-danger">
+                  <div *ngIf="cartaoCreditoTipo.errors['required']">
+                    Tipo do cartão de crédito é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -216,6 +340,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="nomeCartao" type="text">
+
+                <div *ngIf="cartaoCreditoNome.invalid && (cartaoCreditoNome.dirty || cartaoCreditoNome.touched)" class="alert alert-danger">
+                  <div *ngIf="cartaoCreditoNome.errors['required'] || cartaoCreditoNome.errors['campoEmBranco']">
+                    Nome do cartão de crédito é obrigatório.
+                  </div>
+                  <div *ngIf="cartaoCreditoNome.errors['minlength']">
+                    Nome do cartão deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -227,6 +361,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="numeroCartao" type="text">
+
+                <div *ngIf="cartaoCreditoNumero.invalid && (cartaoCreditoNumero.dirty || cartaoCreditoNumero.touched)" class="alert alert-danger">
+                  <div *ngIf="cartaoCreditoNumero.errors['required']">
+                    Número do cartão de crédito é obrigatório.
+                  </div>
+                  <div *ngIf="cartaoCreditoNumero.errors['pattern']">
+                    Número do cartão de crédito precisa conter 16 dígitos.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -239,6 +383,16 @@
               <div class="col-md-9">
                 <div class="input-space">
                   <input formControlName="codigoSeguranca" type="text">
+
+                  <div *ngIf="cartaoCreditoCodigo.invalid && (cartaoCreditoCodigo.dirty || cartaoCreditoCodigo.touched)" class="alert alert-danger">
+                    <div *ngIf="cartaoCreditoCodigo.errors['required']">
+                      Código de segurança do cartão de crédito é obrigatório.
+                    </div>
+                    <div *ngIf="cartaoCreditoCodigo.errors['pattern']">
+                      Código de segurança do cartão de crédito precisa conter 3 dígitos.
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
