@@ -60,11 +60,14 @@ export class CheckoutComponent implements OnInit {
           DanicolnShopValidators.campoEmBranco]),
       }),
       enderecoCobranca: this.formBuilder.group({
-        logradouro: [''],
-        cidade: [''],
-        estado: [''],
-        pais: [''],
-        cep: ['']
+        logradouro: new FormControl('',[Validators.required, Validators.minLength(2),
+          DanicolnShopValidators.campoEmBranco]),
+        cidade: new FormControl('',[Validators.required, Validators.minLength(2),
+          DanicolnShopValidators.campoEmBranco]),
+        estado: new FormControl('',[Validators.required]),
+        pais: new FormControl('',[Validators.required]),
+        cep: new FormControl('',[Validators.required,
+          DanicolnShopValidators.campoEmBranco]),
       }),
       cartaoCredito: this.formBuilder.group({
         tipoCartao: [''],
@@ -150,6 +153,26 @@ export class CheckoutComponent implements OnInit {
 
   get enderecoEntregaPais() {
     return this.checkoutFormGroup.get('enderecoEntrega.pais');
+  }
+
+  get enderecoCobrancaLogradouro() {
+    return this.checkoutFormGroup.get('enderecoCobranca.logradouro');
+  }
+
+  get enderecoCobrancaCidade() {
+    return this.checkoutFormGroup.get('enderecoCobranca.cidade');
+  }
+
+  get enderecoCobrancaEstado() {
+    return this.checkoutFormGroup.get('enderecoCobranca.estado');
+  }
+
+  get enderecoCobrancaCep() {
+    return this.checkoutFormGroup.get('enderecoCobranca.cep');
+  }
+
+  get enderecoCobrancaPais() {
+    return this.checkoutFormGroup.get('enderecoCobranca.pais');
   }
 
   copiarEndereco(event) {
