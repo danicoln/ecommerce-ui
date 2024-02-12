@@ -50,16 +50,13 @@ export class CheckoutComponent implements OnInit {
         [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       enderecoEntrega: this.formBuilder.group({
-        logradouro: new FormControl('',[Validators.required,
-          Validators.minLength(2),
+        logradouro: new FormControl('',[Validators.required, Validators.minLength(2),
           DanicolnShopValidators.campoEmBranco]),
-        cidade: new FormControl('',[Validators.required,
-          Validators.minLength(2),
+        cidade: new FormControl('',[Validators.required, Validators.minLength(2),
           DanicolnShopValidators.campoEmBranco]),
         estado: new FormControl('',[Validators.required]),
         pais: new FormControl('',[Validators.required]),
         cep: new FormControl('',[Validators.required,
-          Validators.minLength(2),
           DanicolnShopValidators.campoEmBranco]),
       }),
       enderecoCobranca: this.formBuilder.group({

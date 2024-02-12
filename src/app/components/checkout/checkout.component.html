@@ -96,11 +96,9 @@
                 </select>
 
                 <div *ngIf="enderecoEntregaPais.invalid && (enderecoEntregaPais.dirty || enderecoEntregaPais.touched)" class="alert alert-danger">
-
                   <div *ngIf="enderecoEntregaPais.errors['required']">
                     País é obrigatório.
                   </div>
-
                 </div>
 
               </div>
@@ -114,6 +112,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="logradouro" type="text">
+
+                <div *ngIf="enderecoEntregaLogradouro.invalid && (enderecoEntregaLogradouro.dirty || enderecoEntregaLogradouro.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaLogradouro.errors['required'] || enderecoEntregaLogradouro.errors['campoEmBranco']">
+                    Logradouro é obrigatório.
+                  </div>
+                  <div *ngIf="enderecoEntregaLogradouro.errors['minlength']">
+                    Logradouro deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -125,6 +133,16 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cidade" type="text">
+
+                <div *ngIf="enderecoEntregaCidade.invalid && (enderecoEntregaCidade.dirty || enderecoEntregaCidade.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaCidade.errors['required'] || enderecoEntregaCidade.errors['campoEmBranco']">
+                    Cidade é obrigatório.
+                  </div>
+                  <div *ngIf="enderecoEntregaCidade.errors['minlength']">
+                    Cidade deve conter no mínimo 2 caracteres.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -140,6 +158,13 @@
                     {{ estado.name }}
                   </option>
                 </select>
+
+                <div *ngIf="enderecoEntregaEstado.invalid && (enderecoEntregaEstado.dirty || enderecoEntregaEstado.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaEstado.errors['required']">
+                    Estado é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -151,6 +176,13 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cep" type="text">
+
+                <div *ngIf="enderecoEntregaCep.invalid && (enderecoEntregaCep.dirty || enderecoEntregaCep.touched)" class="alert alert-danger">
+                  <div *ngIf="enderecoEntregaCep.errors['required'] || enderecoEntregaCep.errors['campoEmBranco']">
+                    Cep é obrigatório.
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
