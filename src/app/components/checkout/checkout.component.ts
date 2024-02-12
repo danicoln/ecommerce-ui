@@ -3,6 +3,7 @@ import { DanicolnShopFormService } from './../../services/danicoln-shop-form.ser
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Estado } from 'src/app/common/estado';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { DanicolnShopValidators } from 'src/app/validators/danicoln-shop-validators';
 
 @Component({
@@ -27,10 +28,13 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private danicolnShopFormService: DanicolnShopFormService
+    private danicolnShopFormService: DanicolnShopFormService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit(): void {
+
+    this.revisarDetalhesDoCarrinho();
 
     this.checkoutFormGroup = this.formBuilder.group({
       cliente: this.formBuilder.group({
@@ -106,6 +110,18 @@ export class CheckoutComponent implements OnInit {
         //console.log("País recuperado: " + JSON.stringify(data));
         this.paises = data;
       }
+    );
+  }
+  revisarDetalhesDoCarrinho() {
+
+    //subscribe para carrinhoService.quantidadeTotal
+    this.carrinhoService.quantidadeTotal.subscribe(
+      qtdeTotal => this.quantidadeTotal = qtdeTotal
+    );
+
+    //subscribe para carrinhoService.precoTotal
+    this.carrinhoService.precoTotal.subscribe(
+      valorTotal => this.precoTotal = valorTotal
     );
   }
 
