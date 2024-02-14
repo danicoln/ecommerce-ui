@@ -9,5 +9,5 @@ export class Compra {
   enderecoEntrega: Endereco;
   enderecoCobranca: Endereco;
   pedido: Pedido;
-  itemPedido: ItemPedido[];
+  itemPedidos: ItemPedido[];
 }

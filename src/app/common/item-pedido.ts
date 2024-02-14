@@ -8,7 +8,7 @@ export class ItemPedido {
   produtoId: string;
 
   constructor(itemCarrinho: ItemCarrinho){
-    this.imageUrl = itemCarrinho.imagemUrl;
+    this.imageUrl = itemCarrinho.imageUrl;
     this.quantidade = itemCarrinho.quantidade;
     this.precoUnitario = itemCarrinho.precoUnitario;
     this.produtoId = itemCarrinho.id

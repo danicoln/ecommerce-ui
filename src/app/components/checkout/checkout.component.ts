@@ -2,8 +2,13 @@ import { Pais } from './../../common/pais';
 import { DanicolnShopFormService } from './../../services/danicoln-shop-form.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Compra } from 'src/app/common/compra';
 import { Estado } from 'src/app/common/estado';
+import { ItemPedido } from 'src/app/common/item-pedido';
+import { Pedido } from 'src/app/common/pedido';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { DanicolnShopValidators } from 'src/app/validators/danicoln-shop-validators';
 
 @Component({
@@ -29,7 +34,9 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private danicolnShopFormService: DanicolnShopFormService,
-    private carrinhoService: CarrinhoService
+    private carrinhoService: CarrinhoService,
+    private checkoutService: CheckoutService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -130,14 +137,78 @@ export class CheckoutComponent implements OnInit {
 
     if(this.checkoutFormGroup.invalid){
       this.checkoutFormGroup.markAllAsTouched();
+      return;
     }
 
-    console.log(this.checkoutFormGroup.get('cliente').value);
-    console.log("O email é: " + this.checkoutFormGroup.get('cliente').value.email);
+    // setar o pedido
+    let pedido = new Pedido();
+    pedido.precoTotal = this.precoTotal;
+    pedido.quantidadeTotal = this.quantidadeTotal;
 
-    console.log("O País do endereço de entrega é: " + this.checkoutFormGroup.get('enderecoEntrega').value.pais.name);
-    console.log("O Estado do endereço de entrega é: " + this.checkoutFormGroup.get('enderecoEntrega').value.estado.name);
+    //pegar os itens do Carrinho
+    const itensDoCarrinho = this.carrinhoService.itensCarrinhos;
 
+    //criar o itemPedido de itemCarrinho
+    //obs: Existe dois caminhos para fazer isso, longo caminho e curto caminho.
+    //LONGO CAMINHO:
+    /*let itensPedido: ItemPedido[] = [];
+    for(let i = 0; i < itensCarrinhos.length; i++) {
+      itensPedido[i] = new ItemPedido(itensCarrinhos[i]);
+    }*/
+
+    //CURTO CAMINHO:
+    let itensDoPedido: ItemPedido[] = itensDoCarrinho.map(item => new ItemPedido(item));
+
+    //setar a compra
+    let compra = new Compra();
+
+    // popular a compra - cliente
+    compra.cliente = this.checkoutFormGroup.controls['cliente'].value;
+
+    //popular a compra - enderecoEntrega
+    compra.enderecoEntrega = this.checkoutFormGroup.controls['enderecoEntrega'].value;
+    const enderecoEstado: Estado = JSON.parse(JSON.stringify(compra.enderecoEntrega.estado));
+    const enderecoPais: Pais = JSON.parse(JSON.stringify(compra.enderecoEntrega.pais));
+    compra.enderecoEntrega.estado = enderecoEstado.name;
+    compra.enderecoEntrega.pais = enderecoPais.name;
+
+    //popular a compra - enderecoCobranca
+    compra.enderecoCobranca = this.checkoutFormGroup.controls['enderecoCobranca'].value;
+    const enderecoCobrancaEstado: Estado = JSON.parse(JSON.stringify(compra.enderecoCobranca.estado));
+    const enderecoCobrancaPais: Pais = JSON.parse(JSON.stringify(compra.enderecoCobranca.pais));
+    compra.enderecoCobranca.estado = enderecoCobrancaEstado.name;
+    compra.enderecoCobranca.pais = enderecoCobrancaPais.name;
+
+    //popular a compra - pedido e itemPedido
+    compra.pedido = pedido;
+    compra.itemPedidos = itensDoPedido;
+
+    //chamar API REST via CheckoutService
+    this.checkoutService.realizarPedido(compra).subscribe(
+      {
+        next: response => {
+          alert(`Seu pedido foi recebido.\nNúmero de rastreio de pedido: ${response.numeroRastreio}`);
+
+          // reiniciar o carrinho.
+          this.reiniciarCarrinho();
+        },
+        error: erro => {
+          alert(`Ocorreu um erro: ${erro.message}`);
+        }
+      }
+    );
+  }
+  reiniciarCarrinho() {
+    // reiniciar os dados do carrinho
+    this.carrinhoService.itensCarrinhos = [];
+    this.carrinhoService.precoTotal.next(0);
+    this.carrinhoService.quantidadeTotal.next(0);
+
+    // reiniciar o formulário
+    this.checkoutFormGroup.reset();
+
+    //navegar para a página de prdutos
+    this.router.navigateByUrl("/produtos");
   }
 
   get nome() {
