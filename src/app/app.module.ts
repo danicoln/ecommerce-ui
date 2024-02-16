@@ -15,6 +15,7 @@ import { StatusCarrinhoComponent } from './components/status-carrinho/status-car
 import { CarrinhoDetailsComponent } from './components/carrinho-details/carrinho-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
     StatusCarrinhoComponent,
     CarrinhoDetailsComponent,
     CheckoutComponent,
+    LoginComponent,
   ],
   imports: [
     NgbModule,
