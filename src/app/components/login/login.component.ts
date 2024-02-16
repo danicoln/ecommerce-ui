@@ -29,9 +29,25 @@ export class LoginComponent implements OnInit {
         scopes: meuAppConfig.openIdConnect.scopes
       }
     });
-   }
+  }
 
   ngOnInit(): void {
+    this.oktaSignin.remove(); // remove os elementos do okta
+
+    //renderizamos o widget de login
+    this.oktaSignin.renderEl({
+
+      //dizemos qual elemento a ser renderizado. Este elemento, é o id que definimos no html.
+      el: '#okta-sign-in-widget'},
+      (response: any) => {
+        if (response.status === 'SUCCESS') {
+          this.oktaAuth.signInWithRedirect();
+        }
+      },
+      (error: any) => {
+        throw error;
+      }
+    );
   }
 
 }
