@@ -1,32 +1,37 @@
-.btn-seguranca {
+.security-btn {
   position: relative;
   right: 0;
   min-width: 95px;
   color: #fff;
-  border: 10px solid #205b8d;
+  border: 10px #205b8d;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 43px;
   background: #205b8d
+
 }
 
+
+/*
 .login-status-header {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
 }
+ se n der certo, usar este
 
-/* se n der certo, usar este
-.form-header{
-      -webkit-box-pack:center;
-      -webkit-justify-content:center;
-      -moz-box-pack:center;
-      -ms-flex-pack:center;
-      justify-content:center
-  }
-
-*/
+ */
+ .login-status-header{
+  /*
+  -webkit-box-pack:center;
+  -webkit-justify-content:center;
+  -moz-box-pack:center;
+  -ms-flex-pack:center;
+  */
+  display: flex;
+  justify-content:center
+   }
 
 .login-status-user-info {
   line-height: 43px;
@@ -39,4 +44,22 @@
   -o-transition: all .5s ease;
   -moz-transition: all .5s ease;
   transition: all .5s ease
+}
+
+.welcome{
+  display: contents;
+  color: #fff;
+}
+
+/*
+* ----------------------------
+* Media Queries
+* ----------------------------
+*/
+
+@media (max-width:1150px){
+  .welcome{
+    display: none;
+  }
+
 }

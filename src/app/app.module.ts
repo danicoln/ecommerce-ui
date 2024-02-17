@@ -29,7 +29,7 @@ const routes: Routes = [
 
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
-  
+
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CarrinhoDetailsComponent},
   {path: 'produtos/:id', component: ProdutoDetailsComponent},
@@ -62,7 +62,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProdutoService],
+  providers: [ProdutoService, {provide: OKTA_CONFIG, useValue:{oktaAuth}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
