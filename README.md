@@ -1,4 +1,36 @@
-# Ecommerce
+# 224. Segurança - Login/Logout - Integração Okta - Componente de status de login
+
+## Documentação do Componente Okta
+
+<ul>
+  <li>
+    <a href="https://github.com/okta/okta-signin-widget">Okta Signin Widget</a>
+  </li>
+  <li>
+    <a href="https://github.com/okta/okta-angular">Okta Angular SDK</a>
+  </li>
+  <li>
+    <a href="https://github.com/okta/okta-auth-js">Okta JavaScript SDK</a>
+  </li>
+</ul>
+
+### Observação
+
+Foi necessário adicionar um usuário na página do okta. A seguir o passo-a-passo:
+
+1. Faça login pelo administrador do okta
+2. Adicionar usuário 
+3. Navegue até Diretório -> Pessoas. Adicione usuários.
+4. Use a opção “Definido pelo administrador” para criar suas senhas. Certifique-se de anotar os nomes de usuário e senhas desta etapa.
+5. Navegue até a seção Aplicativo
+
+Certifique-se de que os usuários estejam atribuídos ao aplicativo Angular.
+
+
+
+<hr>
+
+# e-Commerce
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.7.
 
@@ -22,6 +54,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
