@@ -21,6 +21,7 @@ import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG } from '@okta/okta-a
 import { OktaAuth } from '@okta/okta-auth-js';
 
 import meuAppConfig from './config/meu-app-config';
+import { PaginaMembroComponent } from './components/pagina-membro/pagina-membro.component';
 
 const oktaConfig = meuAppConfig.openIdConnect;
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -52,7 +53,8 @@ const routes: Routes = [
     CarrinhoDetailsComponent,
     CheckoutComponent,
     LoginComponent,
-    LoginStatusComponent
+    LoginStatusComponent,
+    PaginaMembroComponent
   ],
   imports: [
     NgbModule,
