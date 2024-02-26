@@ -32,10 +32,11 @@ function sendToPaginaMembro(oktaAuth: OktaAuth, injector: Injector) {
 
   //redirecina o usuario para sua página de login customizada
   router.navigate(['/login']);
-  
+
 }
 
 const routes: Routes = [
+  
   {
     path: 'membros', component: PaginaMembroComponent, canActivate: [OktaAuthGuard],
     data: { onAuthRequired: sendToPaginaMembro }

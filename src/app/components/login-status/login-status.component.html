@@ -6,11 +6,11 @@
       Bem vindo {{ nomeCompleto }}!
     </div>
 
-    <button *ngIf="!isAutenticado" routerLink="/login" class="security-btn">Login</button>
+      <button *ngIf="!isAutenticado" routerLink="/login" class="security-btn">Login</button>
 
-    <button *ngIf="isAutenticado" (click)="logout()" class="security-btn">Logout</button>
+      <button *ngIf="isAutenticado" (click)="logout()" class="security-btn">Logout</button>
 
-    <button routerLink="/membros" class="security-btn ml-l">Membro</button>
+      <button *ngIf="isAutenticado" routerLink="/membros" class="security-btn ml-l">Membro</button>
 
   </div>
 

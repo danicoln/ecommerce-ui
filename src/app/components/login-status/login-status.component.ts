@@ -15,7 +15,7 @@ export class LoginStatusComponent implements OnInit {
   constructor(
     private oktaAuthService: OktaAuthStateService,
     @Inject(OKTA_AUTH) private oktaAuth: OktaAuth
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -28,7 +28,7 @@ export class LoginStatusComponent implements OnInit {
     )
   }
   getDetalhesDoUsuario() {
-    if(this.isAutenticado) {
+    if (this.isAutenticado) {
 
       //
       //
@@ -40,7 +40,7 @@ export class LoginStatusComponent implements OnInit {
     }
   }
 
-  logout(){
+  logout() {
     //Encerrar a sessão com Okta e remover tokens atuais;
     this.oktaAuth.signOut();
   }
