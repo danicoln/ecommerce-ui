@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProdutoListComponent } from './produto-list/produto-list.component';
@@ -17,28 +17,43 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
-import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG } from '@okta/okta-angular';
+import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG, OktaAuthGuard } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 
 import meuAppConfig from './config/meu-app-config';
+import { PaginaMembroComponent } from './components/pagina-membro/pagina-membro.component';
 
 const oktaConfig = meuAppConfig.openIdConnect;
 const oktaAuth = new OktaAuth(oktaConfig);
 
+function sendToPaginaMembro(oktaAuth: OktaAuth, injector: Injector) {
+  //Use o injetor para acessar qualquer serviço de acordo com a aplicação
+  const router = injector.get(Router);
+
+  //redirecina o usuario para sua página de login customizada
+  router.navigate(['/login']);
+
+}
+
 const routes: Routes = [
+  
+  {
+    path: 'membros', component: PaginaMembroComponent, canActivate: [OktaAuthGuard],
+    data: { onAuthRequired: sendToPaginaMembro }
+  },
 
-  {path: 'login/callback', component: OktaCallbackComponent},
-  {path: 'login', component: LoginComponent},
+  { path: 'login/callback', component: OktaCallbackComponent },
+  { path: 'login', component: LoginComponent },
 
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'cart-details', component: CarrinhoDetailsComponent},
-  {path: 'produtos/:id', component: ProdutoDetailsComponent},
-  {path: 'pesquisar/:keyword', component: ProdutoListComponent},
-  {path: 'categoria/:id/:nome', component: ProdutoListComponent},
-  {path: 'categoria', component: ProdutoListComponent},
-  {path: 'produtos', component: ProdutoListComponent},
-  {path: '', redirectTo: '/produtos', pathMatch: 'full'},
-  {path: '**', redirectTo: '/produtos', pathMatch: 'full'}
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'cart-details', component: CarrinhoDetailsComponent },
+  { path: 'produtos/:id', component: ProdutoDetailsComponent },
+  { path: 'pesquisar/:keyword', component: ProdutoListComponent },
+  { path: 'categoria/:id/:nome', component: ProdutoListComponent },
+  { path: 'categoria', component: ProdutoListComponent },
+  { path: 'produtos', component: ProdutoListComponent },
+  { path: '', redirectTo: '/produtos', pathMatch: 'full' },
+  { path: '**', redirectTo: '/produtos', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -52,7 +67,8 @@ const routes: Routes = [
     CarrinhoDetailsComponent,
     CheckoutComponent,
     LoginComponent,
-    LoginStatusComponent
+    LoginStatusComponent,
+    PaginaMembroComponent
   ],
   imports: [
     NgbModule,
@@ -62,7 +78,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProdutoService, {provide: OKTA_CONFIG, useValue:{oktaAuth}}],
+  providers: [ProdutoService, { provide: OKTA_CONFIG, useValue: { oktaAuth } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

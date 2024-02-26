@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
-import OktaSignIn, { WidgetOptions } from '@okta/okta-signin-widget';
+import OktaSignIn from '@okta/okta-signin-widget';
 import meuAppConfig from 'src/app/config/meu-app-config';
 
 @Component({
@@ -12,7 +12,6 @@ import meuAppConfig from 'src/app/config/meu-app-config';
 export class LoginComponent implements OnInit {
 
   oktaSignin: any;
-  opt: WidgetOptions;
 
   constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth) {
     this.oktaSignin = new OktaSignIn({
